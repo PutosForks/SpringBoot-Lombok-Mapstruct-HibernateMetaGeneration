@@ -29,11 +29,8 @@ apply plugin: "at.comm_unity.gradle.plugins.jpamodelgen"
 // this sourceSets block makes intellij recognise source dependency
 // also make eclipse add classpath
 sourceSets {
-    main{
-        java {
-            srcDirs += 'src/main/generated'
-        }
-    }
+    main.java.srcDirs += 'src/generated/java'
+    test.java.srcDirs += 'src/generated/java'
 }
 
 group = 'com.ronlam'
@@ -86,5 +83,5 @@ test {
 
 jpaModelgen {
     library = "org.hibernate:hibernate-jpamodelgen:5.2.14.Final"
-    jpaModelgenSourcesDir = "src/main/generated"
+    jpaModelgenSourcesDir = "src/generated/java"
 }
