@@ -16,25 +16,25 @@
 
 package com.ronlam.test;
 
-import static org.junit.Assume.assumeNoException;
-
+import com.ronlam.test.model.Movie_;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.lang.reflect.Field;
+
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MetadataGeneratorTests {
 
 	@Test
-	public void loadingAllEntityMetadataClass() {
-		try {
-			Class.forName("BaseEntity_");
-			Class.forName("Movie_");
-			Class.forName("UserProfile_");
-		} catch (ClassNotFoundException e) {
-			assumeNoException("Some of Metadata classes cannot be loaded.", e);
-		}
+	public void loadingAllEntityMetadataClass()
+        throws NoSuchFieldException {
+
+        Field declaredField = Movie_.class.getDeclaredField("name");
+        assertNotNull(declaredField);
 	}
 }
