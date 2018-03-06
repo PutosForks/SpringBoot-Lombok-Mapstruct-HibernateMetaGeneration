@@ -27,10 +27,11 @@ apply plugin: "net.ltgt.apt"
 apply plugin: "at.comm_unity.gradle.plugins.jpamodelgen"
 
 // this sourceSets block makes intellij recognise source dependency
+// also make eclipse add classpath
 sourceSets {
     main{
         java {
-            srcDirs = ['src/main/java','src/main/generated']
+            srcDirs += 'src/main/generated'
         }
     }
 }
