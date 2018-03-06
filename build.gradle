@@ -26,9 +26,13 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: "net.ltgt.apt"
 apply plugin: "at.comm_unity.gradle.plugins.jpamodelgen"
 
+// this sourceSets block makes intellij recognise source dependency
 sourceSets {
-	test.compileClasspath += configurations.compileOnly
-	test.runtimeClasspath += configurations.compileOnly
+    main{
+        java {
+            srcDirs = ['src/main/java','src/main/generated']
+        }
+    }
 }
 
 group = 'com.ronlam'
@@ -81,5 +85,5 @@ test {
 
 jpaModelgen {
     library = "org.hibernate:hibernate-jpamodelgen:5.2.14.Final"
-    jpaModelgenSourcesDir = "src/generated/java"
+    jpaModelgenSourcesDir = "src/main/generated"
 }
