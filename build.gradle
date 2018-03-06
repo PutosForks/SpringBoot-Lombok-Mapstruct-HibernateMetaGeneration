@@ -1,0 +1,85 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        // for jpamodelgen-plugin
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.at.comm_unity.gradle.plugins:jpamodelgen-plugin:1.1.4")
+        classpath("net.ltgt.gradle:gradle-apt-plugin:0.15")
+    }
+}
+
+// default from start.spring.io
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+// for annotations and meta-data generation
+apply plugin: "net.ltgt.apt"
+apply plugin: "at.comm_unity.gradle.plugins.jpamodelgen"
+
+sourceSets {
+	test.compileClasspath += configurations.compileOnly
+	test.runtimeClasspath += configurations.compileOnly
+}
+
+group = 'com.ronlam'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 9
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url "https://repo.spring.io/snapshot" }
+}
+
+ext {
+    mapstructVersion = '1.2.0.Final'
+    lombokVersion = '1.16.20'
+}
+
+dependencies {
+
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    compile("org.mapstruct:mapstruct-jdk8:${mapstructVersion}")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    annotationProcessor("org.mapstruct:mapstruct-processor:${mapstructVersion}", "org.projectlombok:lombok")
+
+    //must if using JDK 9
+    compile('javax.xml.bind:jaxb-api:2.3.0')
+
+    /**
+     * optionals
+     */
+    // could be other DB
+    runtime('com.h2database:h2')
+    // just for coolness
+    compile('org.flywaydb:flyway-core')
+    // side note: using Atomikos will not work if
+    // spring.datasource.hikari.maximum-pool-size property not adjust
+    compile('org.springframework.boot:spring-boot-starter-jta-bitronix')
+    // required only if mapstruct componentModel = "jsr330"
+    compile('javax.inject:javax.inject:1')
+    /**
+     * optionals end
+     */
+}
+
+test {
+    testLogging.showStandardStreams = true
+}
+
+jpaModelgen {
+    library = "org.hibernate:hibernate-jpamodelgen:5.2.14.Final"
+    jpaModelgenSourcesDir = "src/generated/java"
+}
