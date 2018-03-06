@@ -2,7 +2,7 @@
 /build/
 /bin/
 /transaction-logs/
-/src/generated/java/
+/src/generated/
 !gradle/wrapper/gradle-wrapper.jar
 *.bak
 
