@@ -1,4 +1,21 @@
 = SpringBoot-Lombok-Mapstruct-HibernateMetaGeneration
+// Settings:
+ifndef::env-github[:icons: font]
+ifdef::env-github,env-browser[]
+:toc: macro
+:toclevels: 1
+endif::[]
+ifdef::env-github[]
+:branch: master
+:status:
+:outfilesuffix: .adoc
+:!toc-title:
+:caution-caption: :fire:
+:important-caption: :exclamation:
+:note-caption: :paperclip:
+:tip-caption: :bulb:
+:warning-caption: :warning:
+endif::[]
 
 Spring Boot 2.0 with Lombok, Mapstruct, and Hibernate Meta-model
 Generation integration
@@ -6,6 +23,5 @@ Generation integration
 == Eclipse
 
 .Annoying Buildship version
-[IMPORTANT]
-Buildship in stock Eclipse Oxygen contains bugs that makes importing
+IMPORTANT: Buildship in stock Eclipse Oxygen contains bugs that makes importing
 Gradle Project impossible.
