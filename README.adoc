@@ -1,0 +1,11 @@
+= SpringBoot-Lombok-Mapstruct-HibernateMetaGeneration
+
+Spring Boot 2.0 with Lombok, Mapstruct, and Hibernate Meta-model
+Generation integration
+
+== Eclipse
+
+.Annoying Buildship version
+[IMPORTANT]
+Buildship in stock Eclipse Oxygen contains bugs that makes importing
+Gradle Project impossible.
