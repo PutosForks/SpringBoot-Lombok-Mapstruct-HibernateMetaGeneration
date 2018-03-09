@@ -23,7 +23,9 @@ endif::[]
 :uri-download: {uri-repo}/archive/master.zip
 :uri-issues: {uri-repo}/issues
 :uri-eclipse-dl: https://www.eclipse.org/downloads/
+:uri-eclipse-lombok-install: https://projectlombok.org/setup/eclipse
 :uri-idea-dl: https://www.jetbrains.com/idea/download/
+:uri-idea-lombok-install: https://projectlombok.org/setup/intellij
 
 Spring Boot 2.0 with Lombok, Mapstruct, and Hibernate Meta-model
 Generation integration
@@ -31,22 +33,22 @@ Generation integration
 toc::[]
 
 == Prerequisite
-1. JDK 9 (Tested with JDK 9.0.4)
-2. IDE (Tested with Eclipse Oxygen and Intellij 2017.3.4 Ultimate Edition)
-
+. JDK 9 (Tested with JDK 9.0.4)
+. IDE (Tested with {uri-eclipse-dl}[Eclipse Oxygen] and {uri-idea-dl}[Intellij] 2017.3.4 Ultimate Edition)
+. Source code
+  * May use Git support in IDE or {uri-download}[direct download] and then unzip
+. For Eclipse user, Lombok Plugin need to download seperately. 
+  
 == Eclipse setup
 IMPORTANT: Buildship in stock Eclipse Oxygen contains bugs that makes importing
 Gradle Project impossible with JDK 9.
 
-. {uri-eclipse-dl}[Download] Eclipse, then install and run
-  * Eclipse Oxygen preferred (2018-03-08)
+. Install {uri-eclipse-lombok-install}[Lombok plugin]
 . Update Buildship plugin
   1. Help > Eclipse Marketplace...
   2. Search for "Buildship"
   3. Click "Installed" button
   4. Click "Update"
-. Download source
-  * May use Git support in Eclipse or {uri-download}[direct download] and then unzip
 . Import downloaded source as "Existing Gradle Project"
   * Source should show error for now, will be fixed after step "Refresh Gradle Project"
 . In "Gradle Tasks" view or make a new Run Configuration, run test task
@@ -54,12 +56,10 @@ Gradle Project impossible with JDK 9.
 . Right click project in "Project Explorer" and then Gradle > Refresh Gradle Project
 
 == Intellij setup
-. {uri-idea-dl}[Download] Intellij, then install and run (Commercial for Ultimate Edition)
-. Download source
-  * May use Git support in Intellij or {uri-download}[direct download] and then unzip
 . Import project in Intellij from downloaded soure path
 . In Import Model prompt, select "Import Project as external module".
 . In next screen, select "Use auto-import" and finish.
+. Install {uri-idea-lombok-install}[Lombok plugin] inside Intellij, then restart Intellij.
 . After some loading, project should be setup automatically.
 . Run test task in Gradle view to ensure everything works.
 
